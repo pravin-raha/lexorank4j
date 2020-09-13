@@ -2,7 +2,37 @@
 
 A reference implementation of a list ordering system like JIRA's Lexorank algorithm.
 
-# Credits
+## Using
+
+### Static methods
+
+```java
+// min
+LexoRank minLexoRank = LexoRank.min();
+// max
+LexoRank maxLexoRank = LexoRank.max();
+// middle
+LexoRank middleLexoRank = LexoRank.middle();
+// parse
+LexoRank parsedLexoRank = LexoRank.parse("0|0i0000:");
+```
+
+### Public methods
+
+```java
+// any lexoRank
+LexoRank lexoRank = LexoRank.middle();
+
+// generate next lexorank
+LexoRank nextLexoRank = lexoRank.genNext();
+
+// generate previous lexorank
+LexoRank prevLexoRank = lexoRank.genPrev();
+
+// toString
+String lexoRankStr = lexoRank.toString();
+```
+## Credits
 This library uses Open Source components. You can find the source code of their open source projects along with license information below. We acknowledge and are grateful to these developers for their contributions to open source.
 
 Project: lexorank-dotnet https://github.com/kvandake/lexorank-dotnet
