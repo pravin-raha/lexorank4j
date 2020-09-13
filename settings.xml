@@ -1,0 +1,9 @@
+<settings>
+  <servers>
+    <server>
+      <id>ossrh</id>
+      <username>${SONATYPE_USERNAME}</username>
+      <password>${SONATYPE_PASSWORD}</password>
+    </server>
+  </servers>
+</settings>
