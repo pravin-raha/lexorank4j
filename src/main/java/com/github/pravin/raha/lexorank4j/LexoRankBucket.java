@@ -25,7 +25,7 @@ public class LexoRankBucket {
   }
 
   public static LexoRankBucket from(String str) {
-    var val = LexoInteger.parse(str, LexoRank.NUMERAL_SYSTEM);
+    LexoInteger val = LexoInteger.parse(str, LexoRank.NUMERAL_SYSTEM);
 
     for (LexoRankBucket bucket : VALUES) {
       if (bucket.value.equals(val)) return bucket;

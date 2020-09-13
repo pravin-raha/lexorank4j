@@ -49,7 +49,7 @@ public class LexoRank implements Comparable<LexoRank> {
   }
 
   public static LexoRank middle() {
-    var minLexoRank = min();
+    LexoRank minLexoRank = min();
     return minLexoRank.between(max(minLexoRank.bucket));
   }
 
@@ -67,8 +67,8 @@ public class LexoRank implements Comparable<LexoRank> {
     if (oLeft.getSystem() != oRight.getSystem())
       throw new IllegalArgumentException("Expected same system");
 
-    var left = oLeft;
-    var right = oRight;
+    LexoDecimal left = oLeft;
+    LexoDecimal right = oRight;
     LexoDecimal nLeft;
     if (oLeft.getScale() < oRight.getScale()) {
       nLeft = oRight.setScale(oLeft.getScale(), false);
@@ -85,11 +85,11 @@ public class LexoRank implements Comparable<LexoRank> {
     }
 
     LexoDecimal nRight;
-    for (var scale = left.getScale(); scale > 0; right = nRight) {
-      var nScale1 = scale - 1;
-      var nLeft1 = left.setScale(nScale1, true);
+    for (int scale = left.getScale(); scale > 0; right = nRight) {
+      int nScale1 = scale - 1;
+      LexoDecimal nLeft1 = left.setScale(nScale1, true);
       nRight = right.setScale(nScale1, false);
-      var cmp = nLeft1.compareTo(nRight);
+      int cmp = nLeft1.compareTo(nRight);
       if (cmp == 0) return checkMid(oLeft, oRight, nLeft1);
 
       if (nLeft1.compareTo(nRight) > 0) break;
@@ -98,12 +98,12 @@ public class LexoRank implements Comparable<LexoRank> {
       left = nLeft1;
     }
 
-    var mid = middle(oLeft, oRight, left, right);
+    LexoDecimal mid = middle(oLeft, oRight, left, right);
 
     int nScale;
-    for (var mScale = mid.getScale(); mScale > 0; mScale = nScale) {
+    for (int mScale = mid.getScale(); mScale > 0; mScale = nScale) {
       nScale = mScale - 1;
-      var nMid = mid.setScale(nScale);
+      LexoDecimal nMid = mid.setScale(nScale);
       if (oLeft.compareTo(nMid) >= 0 || nMid.compareTo(oRight) >= 0) break;
 
       mid = nMid;
@@ -114,7 +114,7 @@ public class LexoRank implements Comparable<LexoRank> {
 
   private static LexoDecimal middle(
       LexoDecimal lBound, LexoDecimal rBound, LexoDecimal left, LexoDecimal right) {
-    var mid = middle(left, right);
+    LexoDecimal mid = middle(left, right);
     return checkMid(lBound, rBound, mid);
   }
 
@@ -125,14 +125,14 @@ public class LexoRank implements Comparable<LexoRank> {
   }
 
   private static LexoDecimal middle(LexoDecimal left, LexoDecimal right) {
-    var sum = left.add(right);
-    var mid = sum.multiply(LexoDecimal.half(left.getSystem()));
-    var scale = Math.max(left.getScale(), right.getScale());
+    LexoDecimal sum = left.add(right);
+    LexoDecimal mid = sum.multiply(LexoDecimal.half(left.getSystem()));
+    int scale = Math.max(left.getScale(), right.getScale());
     if (mid.getScale() > scale) {
-      var roundDown = mid.setScale(scale, false);
+      LexoDecimal roundDown = mid.setScale(scale, false);
       if (roundDown.compareTo(left) > 0) return roundDown;
 
-      var roundUp = mid.setScale(scale, true);
+      LexoDecimal roundUp = mid.setScale(scale, true);
       if (roundUp.compareTo(right) < 0) return roundUp;
     }
 
@@ -196,9 +196,9 @@ public class LexoRank implements Comparable<LexoRank> {
   public LexoRank genPrev() {
     if (isMax()) return new LexoRank(bucket, INITIAL_MAX_DECIMAL);
 
-    var floorInteger = decimal.floor();
-    var floorDecimal = LexoDecimal.from(floorInteger);
-    var nextDecimal = floorDecimal.subtract(EIGHT_DECIMAL);
+    LexoInteger floorInteger = decimal.floor();
+    LexoDecimal floorDecimal = LexoDecimal.from(floorInteger);
+    LexoDecimal nextDecimal = floorDecimal.subtract(EIGHT_DECIMAL);
     if (nextDecimal.compareTo(MIN_DECIMAL) <= 0) nextDecimal = between(MIN_DECIMAL, decimal);
 
     return new LexoRank(bucket, nextDecimal);
@@ -227,9 +227,9 @@ public class LexoRank implements Comparable<LexoRank> {
   public LexoRank genNext() {
     if (isMin()) return new LexoRank(bucket, INITIAL_MIN_DECIMAL);
 
-    var ceilInteger = decimal.ceil();
-    var ceilDecimal = LexoDecimal.from(ceilInteger);
-    var nextDecimal = ceilDecimal.add(EIGHT_DECIMAL);
+    LexoInteger ceilInteger = decimal.ceil();
+    LexoDecimal ceilDecimal = LexoDecimal.from(ceilInteger);
+    LexoDecimal nextDecimal = ceilDecimal.add(EIGHT_DECIMAL);
     if (nextDecimal.compareTo(MAX_DECIMAL) >= 0) nextDecimal = between(decimal, MAX_DECIMAL);
 
     return new LexoRank(bucket, nextDecimal);
@@ -239,7 +239,7 @@ public class LexoRank implements Comparable<LexoRank> {
     if (!bucket.equals(other.bucket))
       throw new IllegalArgumentException("Between works only within the same bucket");
 
-    var cmp = decimal.compareTo(other.decimal);
+    int cmp = decimal.compareTo(other.decimal);
     if (cmp > 0) return new LexoRank(bucket, between(other.decimal, decimal));
     if (cmp == 0)
       throw new IllegalArgumentException(

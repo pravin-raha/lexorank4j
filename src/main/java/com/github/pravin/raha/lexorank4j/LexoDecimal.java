@@ -14,18 +14,18 @@ public class LexoDecimal implements Comparable<LexoDecimal> {
   }
 
   public static LexoDecimal half(LexoNumeralSystem sys) {
-    var mid = sys.getBase() / 2;
+    int mid = sys.getBase() / 2;
     return make(LexoInteger.make(sys, 1, new int[] {mid}), 1);
   }
 
   public static LexoDecimal parse(String str, LexoNumeralSystem system) {
-    var partialIndex = str.indexOf(system.getRadixPointChar());
+    int partialIndex = str.indexOf(system.getRadixPointChar());
     if (str.lastIndexOf(system.getRadixPointChar()) != partialIndex)
       throw new IllegalArgumentException("More than one " + system.getRadixPointChar());
 
     if (partialIndex < 0) return make(LexoInteger.parse(str, system), 0);
 
-    var intStr = str.substring(0, partialIndex) + str.substring(partialIndex + 1);
+    String intStr = str.substring(0, partialIndex) + str.substring(partialIndex + 1);
     return make(LexoInteger.parse(intStr, system), str.length() - 1 - partialIndex);
   }
 
@@ -36,12 +36,12 @@ public class LexoDecimal implements Comparable<LexoDecimal> {
   public static LexoDecimal make(LexoInteger integer, int sig) {
     if (integer.isZero()) return new LexoDecimal(integer, 0);
 
-    var zeroCount = 0;
+    int zeroCount = 0;
 
-    for (var i = 0; i < sig && integer.getMag(i) == 0; ++i) ++zeroCount;
+    for (int i = 0; i < sig && integer.getMag(i) == 0; ++i) ++zeroCount;
 
-    var newInteger = integer.shiftRight(zeroCount);
-    var newSig = sig - zeroCount;
+    LexoInteger newInteger = integer.shiftRight(zeroCount);
+    int newSig = sig - zeroCount;
     return new LexoDecimal(newInteger, newSig);
   }
 
@@ -50,9 +50,9 @@ public class LexoDecimal implements Comparable<LexoDecimal> {
   }
 
   public LexoDecimal add(LexoDecimal other) {
-    var tMag = mag;
-    var tSig = sig;
-    var oMag = other.mag;
+    LexoInteger tMag = mag;
+    int tSig = sig;
+    LexoInteger oMag = other.mag;
 
     int oSig;
     for (oSig = other.sig; tSig < oSig; ++tSig) tMag = tMag.shiftLeft();
@@ -66,9 +66,9 @@ public class LexoDecimal implements Comparable<LexoDecimal> {
   }
 
   public LexoDecimal subtract(LexoDecimal other) {
-    var thisMag = mag;
-    var thisSig = sig;
-    var otherMag = other.mag;
+    LexoInteger thisMag = mag;
+    int thisSig = sig;
+    LexoInteger otherMag = other.mag;
 
     int otherSig;
     for (otherSig = other.sig; thisSig < otherSig; ++thisSig) thisMag = thisMag.shiftLeft();
@@ -92,14 +92,14 @@ public class LexoDecimal implements Comparable<LexoDecimal> {
   public LexoInteger ceil() {
     if (isExact()) return mag;
 
-    var floor = floor();
+    LexoInteger floor = floor();
     return floor.add(LexoInteger.one(floor.getSystem()));
   }
 
   public boolean isExact() {
     if (sig == 0) return true;
 
-    for (var i = 0; i < sig; ++i) if (mag.getMag(i) != 0) return false;
+    for (int i = 0; i < sig; ++i) if (mag.getMag(i) != 0) return false;
 
     return true;
   }
@@ -117,20 +117,20 @@ public class LexoDecimal implements Comparable<LexoDecimal> {
 
     if (nSig < 0) nSig = 0;
 
-    var diff = sig - nSig;
-    var nmag = mag.shiftRight(diff);
+    int diff = sig - nSig;
+    LexoInteger nmag = mag.shiftRight(diff);
     if (ceiling) nmag = nmag.add(LexoInteger.one(nmag.getSystem()));
 
     return make(nmag, nSig);
   }
 
   public String format() {
-    var intStr = mag.format();
+    String intStr = mag.format();
     if (sig == 0) return intStr;
 
     StringBuilder sb = new StringBuilder(intStr);
     char head = sb.charAt(0);
-    var specialHead =
+    boolean specialHead =
         head == mag.getSystem().getPositiveChar() || head == mag.getSystem().getNegativeChar();
     if (specialHead) sb.delete(0, 1);
 
@@ -167,8 +167,8 @@ public class LexoDecimal implements Comparable<LexoDecimal> {
     if (Objects.equals(this, lexoDecimal)) return 0;
     if (Objects.equals(null, lexoDecimal)) return 1;
 
-    var tMag = mag;
-    var oMag = lexoDecimal.mag;
+    LexoInteger tMag = mag;
+    LexoInteger oMag = lexoDecimal.mag;
     if (sig > lexoDecimal.sig) oMag = oMag.shiftLeft(sig - lexoDecimal.sig);
     else if (sig < lexoDecimal.sig) tMag = tMag.shiftLeft(lexoDecimal.sig - sig);
 
