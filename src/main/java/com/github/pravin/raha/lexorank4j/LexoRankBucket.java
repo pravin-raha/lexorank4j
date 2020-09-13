@@ -1,4 +1,4 @@
-package com.pravin.raha.lexorank4j;
+package com.github.pravin.raha.lexorank4j;
 
 import java.util.Objects;
 

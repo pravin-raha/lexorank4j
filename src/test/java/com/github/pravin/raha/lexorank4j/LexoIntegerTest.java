@@ -1,4 +1,4 @@
-package com.pravin.raha.lexorank4j;
+package com.github.pravin.raha.lexorank4j;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

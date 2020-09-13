@@ -1,12 +1,14 @@
-package com.pravin.raha.lexorank4j.numerical.system;
+package com.github.pravin.raha.lexorank4j.numerical.system;
 
-public class LexoNumeralSystem10 implements LexoNumeralSystem {
+public class LexoNumeralSystem36 implements LexoNumeralSystem {
+  private final char[] digits = "0123456789abcdefghijklmnopqrstuvwxyz".toCharArray();
+
   public String getName() {
-    return "Base10";
+    return "Base36";
   }
 
   public int getBase() {
-    return 10;
+    return 36;
   }
 
   public char getPositiveChar() {
@@ -18,15 +20,16 @@ public class LexoNumeralSystem10 implements LexoNumeralSystem {
   }
 
   public char getRadixPointChar() {
-    return '.';
+    return ':';
   }
 
   public int toDigit(char ch) {
     if (ch >= '0' && ch <= '9') return ch - 48;
+    if (ch >= 'a' && ch <= 'z') return ch - 97 + 10;
     throw new IllegalArgumentException("Not valid digit: " + ch);
   }
 
   public char toChar(int digit) {
-    return (char) (digit + 48);
+    return digits[digit];
   }
 }

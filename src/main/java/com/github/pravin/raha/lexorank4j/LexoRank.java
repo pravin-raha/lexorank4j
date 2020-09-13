@@ -1,7 +1,7 @@
-package com.pravin.raha.lexorank4j;
+package com.github.pravin.raha.lexorank4j;
 
-import com.pravin.raha.lexorank4j.numerical.system.LexoNumeralSystem;
-import com.pravin.raha.lexorank4j.numerical.system.LexoNumeralSystem36;
+import com.github.pravin.raha.lexorank4j.numerical.system.LexoNumeralSystem;
+import com.github.pravin.raha.lexorank4j.numerical.system.LexoNumeralSystem36;
 import java.util.Objects;
 
 public class LexoRank implements Comparable<LexoRank> {

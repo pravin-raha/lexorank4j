@@ -1,10 +1,10 @@
-package com.pravin.raha.lexorank4j;
+package com.github.pravin.raha.lexorank4j;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.pravin.raha.lexorank4j.data.LexoRankTestData;
-import com.pravin.raha.lexorank4j.numerical.system.LexoNumeralSystem10;
+import com.github.pravin.raha.lexorank4j.data.LexoRankTestData;
+import com.github.pravin.raha.lexorank4j.numerical.system.LexoNumeralSystem10;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;

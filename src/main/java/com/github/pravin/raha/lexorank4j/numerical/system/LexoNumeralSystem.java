@@ -1,4 +1,4 @@
-package com.pravin.raha.lexorank4j.numerical.system;
+package com.github.pravin.raha.lexorank4j.numerical.system;
 
 public interface LexoNumeralSystem {
 

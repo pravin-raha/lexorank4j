@@ -1,6 +1,6 @@
-package com.pravin.raha.lexorank4j;
+package com.github.pravin.raha.lexorank4j;
 
-import com.pravin.raha.lexorank4j.numerical.system.LexoNumeralSystem;
+import com.github.pravin.raha.lexorank4j.numerical.system.LexoNumeralSystem;
 import java.util.Objects;
 
 public class LexoDecimal implements Comparable<LexoDecimal> {

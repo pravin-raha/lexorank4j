@@ -1,4 +1,4 @@
-package com.pravin.raha.lexorank4j.data;
+package com.github.pravin.raha.lexorank4j.data;
 
 public class LexoRankTestData {
 
