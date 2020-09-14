@@ -23,7 +23,7 @@
     <nexus.staging.maven.plugin.version>1.6.7</nexus.staging.maven.plugin.version>
     <maven.source.plugin.version>2.2.1</maven.source.plugin.version>
     <maven.javadoc.plugin.version>2.9.1</maven.javadoc.plugin.version>
-    <maven.gpg.plugin.verion>1.5</maven.gpg.plugin.verion>
+    <maven.gpg.plugin.verion>1.6</maven.gpg.plugin.verion>
   </properties>
 
   <dependencies>
@@ -154,6 +154,13 @@
             <goals>
               <goal>sign</goal>
             </goals>
+            <configuration>
+              <!-- Prevent `gpg` from using pinentry programs -->
+              <gpgArguments>
+                <arg>--pinentry-mode</arg>
+                <arg>loopback</arg>
+              </gpgArguments>
+            </configuration>
           </execution>
         </executions>
       </plugin>
