@@ -1,5 +1,5 @@
 # lexorank4j 
-![build](https://github.com/pravin-raha/lexorank4j/workflows/.github/workflows/maven.yml/badge.svg)
+[![maven-build Actions Status](https://github.com/pravin-raha/lexorank4j/workflows/maven-build/badge.svg)](https://github.com/pravin-raha/lexorank4j/actions)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.pravin-raha/lexorank4j/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.pravin-raha/lexorank4j/badge.svg)
 
 A reference implementation of a list ordering system like JIRA's Lexorank algorithm.
