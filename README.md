@@ -1,6 +1,32 @@
-# lexorank4j
+# lexorank4j 
+![build](https://github.com/pravin-raha/lexorank4j/workflows/.github/workflows/maven.yml/badge.svg)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.pravin-raha/lexorank4j/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.pravin-raha/lexorank4j/badge.svg)
 
 A reference implementation of a list ordering system like JIRA's Lexorank algorithm.
+
+## Get lexorank4j library
+### You can add lexorank4j to your project as maven dependency
+
+For maven:
+```
+<dependency>
+  <groupId>com.github.pravin-raha</groupId>
+  <artifactId>lexorank4j</artifactId>
+  <version>0.1.0</version>
+</dependency>
+```
+
+For sbt:
+```
+libraryDependencies += "com.github.pravin-raha" % "lexorank4j" % "0.1.0"
+```
+
+### You can build lexorank4j from sources
+```shell script
+git clone https://github.com/pravin-raha/lexorank4j.git
+cd lexorank4j
+mvn clean install
+```
 
 ## Using
 
