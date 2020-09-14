@@ -10,5 +10,6 @@ in
     buildInputs = with pkgs; [
       openjdk11 # 11.0.6-internal
       maven
+      gnupg
     ];
   }
