@@ -8,6 +8,10 @@
   <artifactId>lexorank4j</artifactId>
   <version>0.1.0</version>
 
+  <name>${project.groupId}:${project.artifactId}</name>
+  <description>A reference implementation of a list ordering system like JIRA's Lexorank algorithm.</description>
+  <url>https://github.com/pravin-raha/lexorank4j</url>
+
   <properties>
     <java.version>11</java.version>
     <junit.version>5.6.2</junit.version>
